@@ -1,11 +1,8 @@
-"""Tiny long-running script used as a fixture for background-process tool
-scenarios (run_background_command / task_output / task_stop /
-list_background_tasks). Ticks forever until killed."""
-import time
-
-if __name__ == "__main__":
-    i = 0
-    while True:
-        i += 1
-        print(f"tick {i}", flush=True)
-        time.sleep(1)
+import sys, time
+# Bench fixture: a stand-in 'dev server' that streams output and stays up.
+print('dev server starting on http://127.0.0.1:5000', flush=True)
+for _i in range(1800):
+    print(f'[dev_server] request {_i} handled', flush=True)
+    time.sleep(1)
+print('dev server shutting down', flush=True)
+sys.exit(0)
